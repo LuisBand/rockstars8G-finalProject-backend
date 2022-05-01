@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  node_backend22:
+    container_name: node_express22
+    image: node_express_image22:0.0.1
+    build:
+      context: .
+    ports: 
+      - "5522:5522"
+    environment:
+      - EXTERNAL_PORT=5522
+    depends_on:
+      - node_db22
+  node_db22:
+    container_name: postgres22
+    image: "postgres:12"
+    ports:
+      - "10022:5522"
+    environment:
+      - POSTGRES_USER=luis_banderas
+      - POSTGRES_PASSWORD=LuisBandera123
+      - POSTGRES_DB=musirockstars_db
+    volumes:
+      - nps_data:/var/lib/postgresql/nps_data
+
+volumes:
+  nps_data: {}
+
