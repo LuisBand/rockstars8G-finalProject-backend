@@ -3,13 +3,17 @@ version: '3.8'
 services:
   node_backend22:
     container_name: node_express22
-    image: node_express_image22:0.0.1
+    image: node_express_image22:0.0.4
     build:
       context: .
     ports: 
       - "5522:5522"
     environment:
       - EXTERNAL_PORT=5522
+      - PGDATABASE=musirockstars_db
+      - PGUSER=luis_banderas
+      - PGPASSWORD=LuisBandera123
+      - PGHOST=node_db22
     depends_on:
       - node_db22
   node_db22:
