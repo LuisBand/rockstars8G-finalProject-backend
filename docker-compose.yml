@@ -3,7 +3,7 @@ version: '3.8'
 services:
   node_backend22:
     container_name: node_express22
-    image: node_express_image22:0.0.4
+    image: node_express_image22:0.0.5
     build:
       context: .
     ports: 
