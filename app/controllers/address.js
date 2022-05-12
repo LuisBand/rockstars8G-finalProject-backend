@@ -28,6 +28,7 @@ exports.createOne = async (req,res, next) => {
             number: req.body.number,
             zip_code: req.body.zip_code,
             phone_number: req.body.phone_number,
+            userId: req.body.userId
         }
 
         try {
@@ -53,6 +54,7 @@ exports.updateOne = async (req,res,next) => {
             number: req.body.number,
             zip_code: req.body.zip_code,
             phone_number: req.body.phone_number,
+            userId: req.body.userId
         }
 
         try {
@@ -67,3 +69,11 @@ exports.updateOne = async (req,res,next) => {
     }
 }
 
+exports.deleteOne = async (req, res) => {
+    try {
+        const address = await Address.destroy({where: {id: req.params.id}});
+        return res.status(200).json(address);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}

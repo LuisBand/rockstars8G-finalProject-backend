@@ -39,6 +39,13 @@ const Address = sequelize.define('address', {
     is_default: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
+    },
+    userId: {
+        type: Sequelize.INTEGER,
+        references:{
+            model: 'users',
+            key: 'id'
+        }
     }
 });
 

@@ -9,15 +9,19 @@ const Artist = sequelize.define('artist',{
         primaryKey: true
     },
     name:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    image:{
+        type: Sequelize.STRING,
         allowNull: false,
     },
     nationality:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     description:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true
     },
     topfive:{

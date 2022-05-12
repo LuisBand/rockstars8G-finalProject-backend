@@ -1,4 +1,4 @@
-const controller = require('../controllers/address');
+const controller = require('../controllers/album');
 const router = require('express').Router();
 
 router

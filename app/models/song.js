@@ -24,6 +24,10 @@ const Song = sequelize.define('song',{
         type: Sequelize.FLOAT,
         allowNull: false,
     },
+    price:{
+        type: Sequelize.FLOAT,
+        allowNull: false,
+    },
     albumId:{
         type: Sequelize.INTEGER,
         references:{

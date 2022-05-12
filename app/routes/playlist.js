@@ -1,4 +1,4 @@
-const controller = require('../controllers/address');
+const controller = require('../controllers/playlist');
 const router = require('express').Router();
 
 router

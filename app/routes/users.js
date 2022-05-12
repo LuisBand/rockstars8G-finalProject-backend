@@ -2,6 +2,7 @@ const controller = require('../controllers/users');
 const router = require('express').Router();
 
 router
+    .get('/addresses', controller.getDirections)
     .get('/', controller.getAll)
     .get('/:id', controller.getOne)
     .post('/', controller.createOne)

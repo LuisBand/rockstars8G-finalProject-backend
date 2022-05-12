@@ -1,8 +1,17 @@
 const User = require('../models/users');
+const Address = require('../models/address');
+
 
 exports.getAll = async (req, res, next) => {
     try {
-        const ALL = await User.findAll();
+        const ALL = await User.findAll({
+            // attributes: {
+            //     include: [{
+            //         model: Address,
+            //         as: 'address' 
+            //     }]
+            // }
+        });
         return res.status(200).json(ALL);
     } catch (error) {
         return res.status(500).json(error);
@@ -11,7 +20,9 @@ exports.getAll = async (req, res, next) => {
 
 exports.getOne = async (req, res, next) => {
     try {
-        const user = await User.findByPk(req.params.id);
+        const user = await User.findOne({
+            where: {id: req.params.id},
+        });
         return res.status(200).json(user);
     } catch (error) {
         return res.status(500).json(error);
@@ -25,7 +36,6 @@ exports.createOne = async (req,res, next) => {
             email: req.body.email,
             password: req.body.password,
         }
-
         try {
             const user = await User.create(USER_MODEL);
             console.log('User created Successfully');
@@ -68,3 +78,11 @@ exports.deleteOne = async (req, res) => {
     }
 }
 
+exports.getDirections = async(req, res) => {
+    try{
+        const response = await Address.findAll({where: {userId: req.body.userId}});
+        return res.status(200).json(response);
+    }catch(error){
+        return res.status(500).json(error);
+    }
+}
