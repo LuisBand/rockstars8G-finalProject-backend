@@ -7,9 +7,9 @@ services:
     build:
       context: .
     ports: 
-      - "5522:5522"
+      - "9022:9022"
     environment:
-      - EXTERNAL_PORT=5522
+      - EXTERNAL_PORT=9022
       - PGDATABASE=musirockstars_db
       - PGUSER=luis_banderas
       - PGPASSWORD=LuisBandera123

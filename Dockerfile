@@ -1,15 +1,15 @@
-FROM node:14
+FROM node:16-alpine
 
-EXPOSE 5522
+EXPOSE 9022
 
 WORKDIR /src
 
-RUN npm install i npm@latest -g
-
 COPY package.json package-lock*.json ./
 
-RUN npm install
-
 COPY . .
+
+RUN npm install i npm@latest -g
+
+RUN npm install
 
 CMD ["node", "app/index.js"]
