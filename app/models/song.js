@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const Song = sequelize.define('song',{
+const Song = sequelize.define('Song',{
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -17,11 +17,11 @@ const Song = sequelize.define('song',{
         allowNull: false,
     },
     file: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     preview: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     price:{
@@ -31,14 +31,14 @@ const Song = sequelize.define('song',{
     albumId:{
         type: Sequelize.INTEGER,
         references:{
-            model: 'albums',
+            model: 'Albums',
             key: 'id'
         }
     },
     genreId:{
         type: Sequelize.INTEGER,
         references:{
-            model: 'genres',
+            model: 'Genres',
             key: 'id'
         }
     }

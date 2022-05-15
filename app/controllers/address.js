@@ -9,6 +9,17 @@ exports.getAll = async (req, res, next) => {
     }
 }
 
+exports.getByUser = async (req, res, next) => {
+    try {
+        const ALL = await Address.findAll({
+            where: {userId: req.params.userId}
+        });
+        return res.status(200).json(ALL);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
 exports.getOne = async (req, res, next) => {
     try {
         const address = await Address.findByPk(req.params.id);

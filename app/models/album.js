@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
-const Album = sequelize.define('album',{
+const Album = sequelize.define('Album',{
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -27,9 +27,23 @@ const Album = sequelize.define('album',{
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    release: {
-        type: Sequelize.DATEONLY,
+    release_year: {
+        type: Sequelize.STRING,
         allowNull: false,
+    },
+    genreId:{
+        type: Sequelize.INTEGER,
+        references:{
+            model: 'Genres',
+            key: 'id'
+        }
+    },
+    artistId: {
+        type: Sequelize.INTEGER,
+        references:{
+            model: 'Artists',
+            key: 'id'
+        }
     }
 })
 module.exports = Album;

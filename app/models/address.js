@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');;
 const sequelize = require('../util/database');
 
-const Address = sequelize.define('address', {
+const Address = sequelize.define('Address', {
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -43,7 +43,7 @@ const Address = sequelize.define('address', {
     userId: {
         type: Sequelize.INTEGER,
         references:{
-            model: 'users',
+            model: 'Users',
             key: 'id'
         }
     }

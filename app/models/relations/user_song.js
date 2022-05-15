@@ -3,7 +3,7 @@ const sequelize = require('../../util/database');
 const User = require('../users');
 const Song = require('../song');
 
-const UserSong = sequelize.define('user_song',{
+const UserSong = sequelize.define('User_song',{
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,

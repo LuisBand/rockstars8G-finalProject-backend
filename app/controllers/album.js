@@ -1,4 +1,6 @@
 const Album = require('../models/album');
+const Song = require('../models/song');
+const Artist = require('../models/artist');
 
 exports.getAll = async (req, res, next) => {
     try {
@@ -12,7 +14,20 @@ exports.getAll = async (req, res, next) => {
 exports.getOne = async (req, res, next) => {
     try {
         const album = await Album.findByPk(req.params.id);
-        return res.status(200).json(album);
+        const songs = await Song.findAll({
+            where: {albumId: req.params.id}
+        });
+        const artist = await Artist.findOne({
+            where: {id: album.dataValues.artistId}
+        });
+
+        const result = {
+            ...album.dataValues,
+            artist: artist,
+            songs: songs
+        }
+
+        return res.status(200).json(result);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -26,7 +41,9 @@ exports.createOne = async (req,res, next) => {
             price_virtual: req.body.price_virtual,
             price_physical: req.body.price_physical,
             stock: req.body.stock,
-            release: req.body.release,
+            release_year: req.body.release_year,
+            artistId: req.body.artistId,
+            genreId: req.body.genreId
         }
 
         try {
@@ -50,7 +67,9 @@ exports.updateOne = async (req,res,next) => {
             price_virtual: req.body.price_virtual,
             price_physical: req.body.price_physical,
             stock: req.body.stock,
-            release: req.body.release,
+            release_year: req.body.release_year,
+            artistId: req.body.artistId,
+            genreId: req.body.genre
         }
 
         try {

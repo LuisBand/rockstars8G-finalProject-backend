@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database')
-const Genre = sequelize.define('genre',{
+const Genre = sequelize.define('Genre',{
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,

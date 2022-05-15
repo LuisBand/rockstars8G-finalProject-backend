@@ -9,6 +9,17 @@ exports.getAll = async (req, res, next) => {
     }
 }
 
+exports.getByAlbum = async (req, res, next) => {
+    try {
+        const ALL = await Song.findAll({
+            where:{albumId:req.params.albumId}
+        });
+        return res.status(200).json(ALL);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
 exports.getOne = async (req, res, next) => {
     try {
         const song = await Song.findByPk(req.params.id);
