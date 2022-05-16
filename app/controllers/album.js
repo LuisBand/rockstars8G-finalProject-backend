@@ -33,6 +33,19 @@ exports.getOne = async (req, res, next) => {
     }
 }
 
+exports.getByArtist = async (req, res, next) => {
+    try {
+        const ALL = await Album.findAll({
+            where:{
+                artistId: req.params.artistId
+            }
+        });
+        return res.status(200).json(ALL);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
 exports.createOne = async (req,res, next) => {
     try {
         const ALBUM_MODEL = {
