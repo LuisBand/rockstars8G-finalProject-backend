@@ -27,10 +27,48 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./util/database');
 const app  = express();
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info:{
+            tittle: 'Node JS API project for rockstars 8g',
+            version: '1.0.0'
+        },
+        servers:[
+            {
+                url: 'http://localhost:9022/'
+            }
+        ]
+    },
+    apis:[
+        './controllers/address.js'
+    ]
+}
+
+const swaggerSpec = swaggerJSDoc(options)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
+/**
+ * @swagger
+ * /:
+ *  get:
+ *      summary: This api is used to check if get method is working or not.
+ *      description: This api is used to check if get method is working or not.
+ *      responses:
+ *          200:
+ *              description: To test Get method
+ */
+app.get('/', (req, resp) => {
+    resp.send('Welcome to musirockstars API')
+})
 
 app.use('/login', login);
 app.use('/dev', dev);
